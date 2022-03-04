@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # local
     'post',
+    'user_app.apps.UserAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,11 +83,19 @@ DATABASES = {
     }
 }
 
+# Custom User
+AUTH_USER_MODEL='user_app.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
+AUTH_PREFIX = 'django.contrib.auth.password_validation.'
 AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': AUTH_PREFIX + 'UserAttributeSimilarityValidator',
+        'OPTIONS': {
+            'user_attributes': ('email', 'full_name', 'short_name')
+    },
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
