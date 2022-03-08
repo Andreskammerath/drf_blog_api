@@ -1,3 +1,4 @@
 Django==3.1.14
 djangorestframework==3.12.4
 django-improved-user==1.0.1 # improved default User Model
+django-extensions==3.1.5
