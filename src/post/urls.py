@@ -1,8 +1,8 @@
 from django.urls import include, path
-from post.views import PostList, PostDetail
+from rest_framework.routers import SimpleRouter
+from post.views import PostViewSet, UserViewSet
 
-urlpatterns = [
-    path('<int:pk>/', PostDetail.as_view()),
-    path('', PostList.as_view()),
-    path('api-auth/', include('rest_framework.urls')),
-]
+router = SimpleRouter()
+router.register('users', UserViewSet, basename='users')
+router.register('', PostViewSet, basename='posts')
+urlpatterns = router.urls
